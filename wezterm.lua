@@ -2,7 +2,8 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 local mux = wezterm.mux
-local cache_dir = os.getenv('HOME') .. '/.cache/wezterm/'
+local home = os.getenv('HOME') or os.getenv('USERPROFILE')
+local cache_dir = home .. '/.cache/wezterm/'
 local window_size_cache_path = cache_dir .. 'window_size_cache.txt'
 
 local default_width = 160
