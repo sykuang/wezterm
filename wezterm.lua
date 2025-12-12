@@ -450,7 +450,11 @@ wezterm.on('update-right-status', function(window, pane)
     })
 end)
 wezterm.on("gui-startup", function()
-	os.execute("mkdir " .. cache_dir)
+	if wezterm.target_triple:find('windows') then
+		os.execute('mkdir "' .. cache_dir .. '" 2>nul')
+	else
+		os.execute('mkdir -p "' .. cache_dir .. '"')
+	end
 
 	local window_size_cache_file = io.open(window_size_cache_path, "r")
 	local window
